@@ -11,6 +11,8 @@ namespace NationalCriminalsDB.Service.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<ServiceDbContext>
     {
+        private Random random = new Random();
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -20,7 +22,6 @@ namespace NationalCriminalsDB.Service.Migrations
         private DateTime GenerateRandomDate(DateTime startDate, DateTime endDate)
         {
             var timeSpan = endDate - startDate;
-            var random = new Random();
             var newSpan = new TimeSpan(random.Next(0, (int)timeSpan.TotalHours), 0, 0);
             return startDate + newSpan;
         }
@@ -37,7 +38,6 @@ namespace NationalCriminalsDB.Service.Migrations
             var maxDate = DateTime.Now.AddYears(-18);
             var femaleConvictPhoto = @"https://s-media-cache-ak0.pinimg.com/236x/ae/09/dd/ae09dd6aa3bea0474a085386f78b8396.jpg";
             var maleConvictPhoto = @"http://image.shutterstock.com/z/stock-vector-convict-cartoon-character-85485988.jpg";
-            var random = new Random();
 
             // Creating data
             var data = new Criminal[] {
@@ -260,18 +260,6 @@ namespace NationalCriminalsDB.Service.Migrations
                     Sex = Sex.Female,
                     Weight = random.Next(minWeight, maxWeight),
                     CriminalHistory = new List<Crime>()
-                    //{
-                    //    new Crime()
-                    //    {
-                    //        CrimeID = Guid.NewGuid(),
-                    //        Description = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat",
-                    //        Location = "LA",
-                    //        Victime = "Lorem ipsum",
-                    //        Criminals = new List<Criminal>(),
-                    //        Time = GenerateRandomDate(minDate, DateTime.Now),
-                    //        Type = CrimeType.Homicide
-                    //    },
-                    //},
                 },
                 new Criminal()
                 {
