@@ -16,7 +16,7 @@ namespace NationalCriminalsDB.Service.Helpers
     [TestClass]
     public class PDFCreatorTest
     {
-        Mock<PDFCreator> pdfCreatorMock = new Mock<PDFCreator>();
+        Mock<IPDFCreator> pdfCreatorMock = new Mock<IPDFCreator>();
 
         [TestMethod]
         public void CreatePdf_NullInput()

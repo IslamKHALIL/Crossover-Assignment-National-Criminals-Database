@@ -19,11 +19,11 @@ namespace NationalCriminalsDB.Service.Test.Helpers
         private IMail mail = new Mail(config);
 
         [TestMethod]
-        public void SendEMail_NullRecipient()
+        public async Task SendEMail_NullRecipient()
         {
             try
             {
-                var res = mail.SendEmailAsync(null, new Mock<IEnumerable<FileInfo>>().Object);
+                await mail.SendEmailAsync(null, new Mock<IEnumerable<FileInfo>>().Object);
             }
             catch (ArgumentException)
             {
@@ -34,11 +34,11 @@ namespace NationalCriminalsDB.Service.Test.Helpers
         }
 
         [TestMethod]
-        public void SendEMail_NullRecipient_NullFiles()
+        public async Task SendEMail_NullRecipient_NullFiles()
         {
             try
             {
-                var res = mail.SendEmailAsync(null, null);
+                await mail.SendEmailAsync(null, null);
             }
             catch (ArgumentException)
             {
@@ -49,11 +49,11 @@ namespace NationalCriminalsDB.Service.Test.Helpers
         }
 
         [TestMethod]
-        public void SendEMail_BadEmailRecipient()
+        public async Task SendEMail_BadEmailRecipient()
         {
             try
             {
-                var res = mail.SendEmailAsync(It.IsAny<string>(), new Mock<IEnumerable<FileInfo>>().Object);
+                await mail.SendEmailAsync(It.IsAny<string>(), new Mock<IEnumerable<FileInfo>>().Object);
             }
             catch (ArgumentException)
             {
@@ -64,11 +64,11 @@ namespace NationalCriminalsDB.Service.Test.Helpers
         }
 
         [TestMethod]
-        public void SendEMail_BadEmailRecipient_NullFiles()
+        public async Task SendEMail_BadEmailRecipient_NullFiles()
         {
             try
             {
-                var res = mail.SendEmailAsync(It.IsAny<string>());
+                await mail.SendEmailAsync(It.IsAny<string>());
             }
             catch (ArgumentException)
             {
